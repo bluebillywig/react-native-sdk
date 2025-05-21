@@ -1,0 +1,9 @@
+{
+  "platforms": ["apple", "android", "web"],
+  "apple": {
+    "modules": ["ExpoBBPlayerModule"]
+  },
+  "android": {
+    "modules": ["expo.modules.bbplayer.ExpoBBPlayerModule"]
+  }
+}
