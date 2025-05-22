@@ -94,7 +94,7 @@ class ExpoBBPlayerView(context: Context, appContext: AppContext) : ExpoView(cont
             removePlayer()
         }
 
-        playerView = BBNativePlayer.createPlayerView(currentActivity, jsonUrl)
+        playerView = BBNativePlayer.createPlayerView(currentActivity, jsonUrl, options)
         playerView.delegate = this@ExpoBBPlayerView
         addView(playerView, LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT))
 
