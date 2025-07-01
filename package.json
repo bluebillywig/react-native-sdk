@@ -2,6 +2,7 @@
   "name": "expo-bb-player",
   "version": "0.1.0",
   "description": "React Native implementation of the Blue Billywig Native Player SDK",
+  "homepage": "https://github.com/bluebillywig",
   "main": "build/index.js",
   "types": "build/index.d.ts",
   "scripts": {

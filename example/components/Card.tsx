@@ -9,7 +9,7 @@ type CardProps = PropsWithChildren & {
 
 export default function Card({ children, label, onPress, color }: CardProps) {
   return (
-    <TouchableHighlight onPress={onPress} style={[styles.container, { backgroundColor: color }]}>
+    <TouchableHighlight onPress={onPress} style={[styles.container, { backgroundColor: color }]} activeOpacity={0.1} underlayColor="#DDDDDD">
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center", width: "100%" }}>
         <View style={{ position: "absolute", top: 0, left: 0, right: 0 }}>{children}</View>
         <Text style={styles.label}>{label}</Text>

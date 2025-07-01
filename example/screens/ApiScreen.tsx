@@ -66,7 +66,10 @@ export default function ApiScreen() {
           setEvents((prev) => [...prev, `onDidTriggerAutoPausePlay: ${why}`]);
         }}
         onDidTriggerMediaClipLoaded={(mediaClip) => {
-          setEvents((prev) => [...prev, `onDidTriggerMediaClipLoaded: ${mediaClip.id}`]);
+          setEvents((prev) => [
+            ...prev,
+            `onDidTriggerMediaClipLoaded: ${mediaClip.id}`,
+          ]);
         }}
         onDidTriggerMediaClipFailed={() => {
           setEvents((prev) => [...prev, "onDidTriggerMediaClipFailed"]);
@@ -78,7 +81,10 @@ export default function ApiScreen() {
           setEvents((prev) => [...prev, "onDidTriggerCustomStatistics"]);
         }}
         onDidTriggerDurationChange={(duration) => {
-          setEvents((prev) => [...prev, `onDidTriggerDurationChange: ${duration}`]);
+          setEvents((prev) => [
+            ...prev,
+            `onDidTriggerDurationChange: ${duration}`,
+          ]);
         }}
         onDidTriggerEnded={() => {
           setEvents((prev) => [...prev, "onDidTriggerEnded"]);
@@ -93,6 +99,7 @@ export default function ApiScreen() {
           setEvents((prev) => [...prev, "onDidTriggerPause"]);
         }}
         onDidTriggerPhaseChange={(phase) => {
+          console.log("phase", phase);
           setEvents((prev) => [...prev, `onDidTriggerPhaseChange: ${phase}`]);
         }}
         onDidTriggerPlay={() => {
@@ -135,13 +142,23 @@ export default function ApiScreen() {
       <View style={styles.buttonContainer}>
         <Button title="Play" onPress={() => playerRef.current?.play()} />
         <Button title="Pause" onPress={() => playerRef.current?.pause()} />
-        <Button title="Mute" onPress={() => playerRef.current?.setMuted(true)} />
-        <Button title="Unmute" onPress={() => playerRef.current?.setMuted(false)} />
-        <Button title="Fullscreen" onPress={() => playerRef.current?.enterFullscreen()} />
+        <Button
+          title="Mute"
+          onPress={() => playerRef.current?.setMuted(true)}
+        />
+        <Button
+          title="Unmute"
+          onPress={() => playerRef.current?.setMuted(false)}
+        />
+        <Button
+          title="Fullscreen"
+          onPress={() => playerRef.current?.enterFullscreen()}
+        />
         <Button
           title="getAdClipData"
           onPress={async () => {
             const adMediaClip = await playerRef.current?.adMediaClip();
+            console.log("adMediaClip", adMediaClip);
             setApiProperties(`AdMediaClipId: ${adMediaClip?.id}`);
           }}
         />
@@ -216,9 +233,13 @@ export default function ApiScreen() {
         ref={scrollViewRef}
         onContentSizeChange={(_, contentHeight) => {
           scrollViewRef.current?.scrollTo({ y: contentHeight });
-        }}>
+        }}
+      >
         {events.map((event, index) => (
-          <View key={event + index} style={{ backgroundColor: index % 2 ? "#fff" : "#eee" }}>
+          <View
+            key={event + index}
+            style={{ backgroundColor: index % 2 ? "#fff" : "#eee" }}
+          >
             <Text style={styles.text}>{event}</Text>
           </View>
         ))}

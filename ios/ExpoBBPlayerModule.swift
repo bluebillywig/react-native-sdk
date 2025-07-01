@@ -1,48 +1,154 @@
 import ExpoModulesCore
 
 public class ExpoBBPlayerModule: Module {
-  // Each module class must implement the definition function. The definition consists of components
-  // that describes the module's functionality and behavior.
-  // See https://docs.expo.dev/modules/module-api for more details about available components.
   public func definition() -> ModuleDefinition {
-    // Sets the name of the module that JavaScript code will use to refer to the module. Takes a string as an argument.
-    // Can be inferred from module's class name, but it's recommended to set it explicitly for clarity.
-    // The module will be accessible from `requireNativeModule('ExpoBBPlayer')` in JavaScript.
     Name("ExpoBBPlayer")
 
-    // Sets constant properties on the module. Can take a dictionary or a closure that returns a dictionary.
-    Constants([
-      "PI": Double.pi
-    ])
-
-    // Defines event names that the module can send to JavaScript.
-    Events("onChange")
-
-    // Defines a JavaScript synchronous function that runs the native code on the JavaScript thread.
-    Function("hello") {
-      return "Hello world! 👋"
-    }
-
-    // Defines a JavaScript function that always returns a Promise and whose native code
-    // is by default dispatched on the different thread than the JavaScript runtime runs on.
-    AsyncFunction("setValueAsync") { (value: String) in
-      // Send an event to JavaScript.
-      self.sendEvent("onChange", [
-        "value": value
-      ])
-    }
-
-    // Enables the module to be used as a native view. Definition components that are accepted as part of the
-    // view definition: Prop, Events.
     View(ExpoBBPlayerView.self) {
-      // Defines a setter for the `url` prop.
-      Prop("url") { (view: ExpoBBPlayerView, url: URL) in
-        if view.webView.url != url {
-          view.webView.load(URLRequest(url: url))
-        }
+      Prop("jsonUrl") { (view, url: String) in
+        view.setJsonUrl(url)
       }
 
-      Events("onLoad")
+      Prop("options") { (view, options: [String: Any]) in
+        view.setOptions(options)
+      }
+
+      OnViewDidUpdateProps { view in
+        view.setupPlayer()
+      }
+
+      AsyncFunction("adMediaHeight") { (view: ExpoBBPlayerView) in
+        return view.adMediaHeight()
+      }
+
+      AsyncFunction("adMediaWidth") { (view: ExpoBBPlayerView) in
+        return view.adMediaWidth()
+      }
+
+      AsyncFunction("adMediaClip") { (view: ExpoBBPlayerView) in
+        return view.adMediaClip()
+      }
+
+      AsyncFunction("controls") { (view: ExpoBBPlayerView) in
+        return view.controls()
+      }
+
+      AsyncFunction("duration") { (view: ExpoBBPlayerView) in
+        return view.duration()
+      }
+
+      AsyncFunction("inView") { (view: ExpoBBPlayerView) in
+        return view.inView()
+      }
+
+      AsyncFunction("mode") { (view: ExpoBBPlayerView) in
+        return view.mode()
+      }
+
+      AsyncFunction("muted") { (view: ExpoBBPlayerView) in
+        return view.muted()
+      }
+
+      AsyncFunction("phase") { (view: ExpoBBPlayerView) in
+        return view.phase()
+      }
+
+      AsyncFunction("playoutData") { (view: ExpoBBPlayerView) in
+        return view.playoutData()
+      }
+
+      AsyncFunction("projectData") { (view: ExpoBBPlayerView) in
+        return view.projectData()
+      }
+
+      AsyncFunction("playerState") { (view: ExpoBBPlayerView) in
+        return view.state()
+      }
+
+      AsyncFunction("volume") { (view: ExpoBBPlayerView) in
+        return view.volume()
+      }
+
+      AsyncFunction("autoPlayNextCancel") { (view: ExpoBBPlayerView) in
+        return view.autoPlayNextCancel()
+      }
+
+      AsyncFunction("collapse") { (view: ExpoBBPlayerView) in
+        return view.collapse()
+      }
+
+      AsyncFunction("expand") { (view: ExpoBBPlayerView) in
+        return view.expand()
+      }
+
+      AsyncFunction("enterFullscreen") { (view: ExpoBBPlayerView) in
+        return view.enterFullscreen()
+      }
+
+      AsyncFunction("exitFullscreen") { (view: ExpoBBPlayerView) in
+        return view.exitFullscreen()
+      }
+
+      AsyncFunction("pause") { (view: ExpoBBPlayerView) in
+        return view.pause()
+      }
+
+      AsyncFunction("play") { (view: ExpoBBPlayerView) in
+        return view.play()
+      }
+
+      AsyncFunction("seek") { (view: ExpoBBPlayerView, offsetInSeconds: Int) in
+        return view.seek(offsetInSeconds)
+      }
+
+      AsyncFunction("setMuted") { (view: ExpoBBPlayerView, muted: Bool) in
+        return view.setMuted(muted)
+      }
+
+      AsyncFunction("setVolume") { (view: ExpoBBPlayerView, volume: Double) in
+        return view.setVolume(volume)
+      }
+
+      Events([
+        "onDidFailWithError",
+        "onDidRequestCollapse",
+        "onDidRequestExpand",
+        "onDidRequestOpenUrl",
+        "onDidSetupWithJsonUrl",
+        "onDidTriggerAdError",
+        "onDidTriggerAdFinished",
+        "onDidTriggerAdLoaded",
+        "onDidTriggerAdLoadStart",
+        "onDidTriggerAdNotFound",
+        "onDidTriggerAdQuartile1",
+        "onDidTriggerAdQuartile2",
+        "onDidTriggerAdQuartile3",
+        "onDidTriggerAdStarted",
+        "onDidTriggerAllAdsCompleted",
+        "onDidTriggerAutoPause",
+        "onDidTriggerAutoPausePlay",
+        "onDidTriggerCanPlay",
+        "onDidTriggerCustomStatistics",
+        "onDidTriggerDurationChange",
+        "onDidTriggerEnded",
+        "onDidTriggerFullscreen",
+        "onDidTriggerMediaClipFailed",
+        "onDidTriggerMediaClipLoaded",
+        "onDidTriggerModeChange",
+        "onDidTriggerPause",
+        "onDidTriggerPhaseChange",
+        "onDidTriggerPlay",
+        "onDidTriggerPlaying",
+        "onDidTriggerProjectLoaded",
+        "onDidTriggerRetractFullscreen",
+        "onDidTriggerSeeked",
+        "onDidTriggerSeeking",
+        "onDidTriggerStall",
+        "onDidTriggerStateChange",
+        "onDidTriggerViewFinished",
+        "onDidTriggerViewStarted",
+        "onDidTriggerVolumeChange",
+      ])
     }
   }
 }
