@@ -1,0 +1,75 @@
+appId: expo.modules.bbplayer.example
+---
+- launchApp
+- assertVisible: "React Native SDK"
+- tapOn: "Api + Outstream player"
+- waitForAnimationToEnd:
+    timeout: 1000
+- assertVisible:
+    id: "PlayerView"
+
+- assertVisible: "onDidTriggerPhaseChange: INIT"
+- assertVisible: "onDidTriggerMediaClipLoaded: 0"
+- assertVisible: "onDidTriggerPlay"
+- assertVisible: "onDidTriggerViewStarted"
+- assertVisible: "onDidTriggerPhaseChange: PRE"
+- assertVisible: "onDidTriggerPhaseChange: MAIN"
+- assertVisible: "onDidTriggerAdLoaded"
+- assertVisible: "onDidRequestExpand"
+- assertVisible: "onDidTriggerCanPlay"
+- assertVisible: "onDidTriggerPlaying"
+- assertVisible: "onDidTriggerStateChange: PLAYING"
+- assertVisible: "onDidTriggerAdStarted"
+
+- tapOn: "getPhase"
+- assertVisible: "Phase: MAIN"
+
+- tapOn: "getState"
+- assertVisible: "State: PLAYING"
+
+- tapOn: "Pause"
+- assertVisible: "onDidTriggerPause"
+
+- tapOn: "Play"
+- assertVisible: "onDidTriggerPlay"
+
+- tapOn: "getMuted"
+- assertVisible: "Muted: true"
+
+- tapOn: "Unmute"
+- tapOn: "getMuted"
+- assertVisible: "Muted: false"
+
+- tapOn: "getAdClipData"
+- assertVisible: "AdMediaClipId: 0"
+
+- tapOn: "getDuration"
+- assertVisible: "Duration: null"
+
+- tapOn: "getAdMediaHeight"
+- assertVisible: "AdMediaHeight: 1080"
+
+- tapOn: "getAdMediaWidth"
+- assertVisible: "AdMediaWidth: 1920"
+
+- tapOn: "getMode"
+- assertVisible: "Mode: commercial"
+
+- tapOn: "getPlayOutData"
+- assertVisible: "PlayoutDataId: 0"
+
+- tapOn: "getProjectData"
+- assertVisible: "ProjectDataId: undefined"
+
+- assertVisible: "onDidTriggerAdQuartile1"
+- assertVisible: "onDidTriggerAdQuartile2"
+- assertVisible: "onDidTriggerAdQuartile3"
+- assertVisible: "onDidTriggerAdFinished"
+- assertVisible: "onDidTriggerPause"
+- assertVisible: "onDidTriggerStateChange: PAUSED"
+- assertVisible: "onDidTriggerAllAdsCompleted"
+- assertVisible: "onDidTriggerPhaseChange: POST"
+- assertVisible: "onDidTriggerViewFinished"
+- assertVisible: "onDidTriggerPhaseChange: EXIT"
+- assertVisible: "onDidTriggerEnded"
+- assertVisible: "onDidRequestCollapse"

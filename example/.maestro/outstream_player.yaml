@@ -1,0 +1,19 @@
+appId: expo.modules.bbplayer.example
+---
+- launchApp
+- assertVisible: "React Native SDK"
+
+- tapOn: "Outstream Player"
+- waitForAnimationToEnd
+
+- scrollUntilVisible:
+    element:
+      id: "PlayerView"
+    direction: down
+
+- assertVisible: "pause"
+
+- extendedWaitUntil:
+    notVisible:
+      id: "PlayerView"
+    timeout: 30000

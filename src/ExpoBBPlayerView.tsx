@@ -64,6 +64,7 @@ const NativeView: React.ComponentType<NativeExpoBBPlayerViewProps> =
 const ExpoBBPlayerView = (props: ExpoBBPlayerViewProps) => {
   return (
     <NativeView
+      testID="PlayerView"
       {...props}
       onDidTriggerCustomStatistics={(event) =>
         props.onDidTriggerCustomStatistics?.(event.nativeEvent)
@@ -72,11 +73,9 @@ const ExpoBBPlayerView = (props: ExpoBBPlayerViewProps) => {
         props.onDidTriggerProjectLoaded?.(event.nativeEvent)
       }
       onDidTriggerMediaClipLoaded={(event) => {
-        console.log("onDidTriggerMediaClipLoaded", event.nativeEvent);
         props.onDidTriggerMediaClipLoaded?.(event.nativeEvent);
       }}
       onDidTriggerPhaseChange={(event) => {
-        console.log("onDidTriggerPhaseChange", event.nativeEvent);
         props.onDidTriggerPhaseChange?.(event.nativeEvent.payload);
       }}
       onDidTriggerStateChange={(event) =>
