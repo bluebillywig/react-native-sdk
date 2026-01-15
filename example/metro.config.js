@@ -1,4 +1,11 @@
 // Learn more https://docs.expo.io/guides/customizing-metro
+const os = require('os');
+
+// Polyfill for os.availableParallelism for older Node versions
+if (typeof os.availableParallelism !== 'function') {
+  os.availableParallelism = () => os.cpus().length;
+}
+
 const { getDefaultConfig } = require('expo/metro-config');
 const path = require('path');
 

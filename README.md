@@ -348,6 +348,33 @@ type MediaClip = { /* see src/types.ts for full shape */ };
 type Playout = { /* see src/types.ts for full shape */ };
 ```
 
+## SDK Version Management
+
+This package automatically uses the latest compatible version of the Blue Billywig native SDKs:
+
+- **iOS**: Version `~>8.30` (currently resolves to 8.40.0)
+- **Android**: Version range `[8.30,9.0)` (currently resolves to 8.40.0)
+
+### Automatic Updates
+
+When you run `pod install` (iOS) or build your Android app, the build system will automatically resolve to the latest available version within these constraints. This ensures you benefit from bug fixes and improvements in the native SDKs without manual intervention.
+
+**iOS**: Uses CocoaPods pessimistic versioning (`~>8.30`), which allows any version from 8.30 up to (but not including) 9.0.
+
+**Android**: Uses Gradle range notation (`[8.30,9.0)`), which allows any version from 8.30 (inclusive) to 9.0 (exclusive).
+
+### Version Constraints
+
+The minimum version constraint of 8.30 ensures customers have access to the latest features and critical fixes. When Blue Billywig releases version 9.0, this package will need to be updated to support it.
+
+### For Package Maintainers
+
+The lockfiles (`Podfile.lock` and `Gemfile.lock`) are intentionally not committed to version control. This ensures that:
+
+1. End users always get the latest SDK versions within the specified constraints
+2. SDK updates flow through automatically without requiring package updates
+3. CI/CD builds catch any breaking changes early
+
 ## Example Project
 
 Check out the `/example` directory for a complete working example with:
