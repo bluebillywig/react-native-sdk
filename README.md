@@ -352,8 +352,8 @@ type Playout = { /* see src/types.ts for full shape */ };
 
 This package automatically uses the latest compatible version of the Blue Billywig native SDKs:
 
-- **iOS**: Version `~>8.30` (currently resolves to 8.40.0)
-- **Android**: Version range `[8.30,9.0)` (currently resolves to 8.40.0)
+- **iOS**: Version `~>8.30`
+- **Android**: Version range `[8.30,9.0)`
 
 ### Automatic Updates
 
@@ -365,7 +365,7 @@ When you run `pod install` (iOS) or build your Android app, the build system wil
 
 ### Version Constraints
 
-The minimum version constraint of 8.30 ensures customers have access to the latest features and critical fixes. When Blue Billywig releases version 9.0, this package will need to be updated to support it.
+The minimum version constraint of 8.30 ensures users have access to the latest features and critical fixes. When we release version 9.0, we will update this package to support it.
 
 ### For Package Maintainers
 
