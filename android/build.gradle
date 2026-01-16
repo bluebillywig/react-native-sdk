@@ -44,6 +44,6 @@ android {
 
 
 dependencies {
-  implementation "com.bluebillywig.bbnativeplayersdk:bbnativeplayersdk:8.23.2"
+  implementation "com.bluebillywig.bbnativeplayersdk:bbnativeplayersdk:[8.30,9.0)"
   implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.3"
 }
